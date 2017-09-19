@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+例如namespace="com.ssm.mapper.UserMapper"就是com.ssm.mapper(包名)+UserMapper(userMapper.xml文件去除后缀) -->
+
+
+ <mapper namespace="com.ssm.mapper.UserMapper" >
+ 
+  <sql id="Base_Column_List" >
+    id, login_name, name, password, salt, sex, age, phone, user_type, status, organization_id, 
+    create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultType="com.ssm.model.User" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper> 

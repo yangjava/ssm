@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
+    <!-- sqlSessionFactory配置方式一 
+    <property name="mapperLocations" value="classpath:com/ssm/mapper/**/*.xml" />
+           自动扫描mapping.xml文件，**表示迭代查找 
+    mapper.xml文件中如果字段为驼峰,需要resultMap     
+    UserMapper1.xml 
+    mapper文件的命名不需要和Java一致     
+    -->
+    
+    
+<!--     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:com/ssm/mapper/**/*.xml" />
+    </bean> -->
+    
+    
+    <!-- sqlSessionFactory配置方式二 
+     spring和MyBatis完美整合，不需要mybatis的配置映射文件
+     <setting name="mapUnderscoreToCamelCase" value="true" />
+             开启驼峰映射,可以自动映射POJO类
+             自动扫描mapping.xml文件，**表示迭代查找,也可在sqlMapConfig.xml中单独指定xml文件
+    -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
+		<property name="mapperLocations" value="classpath:com/ssm/mapper/**/*.xml" />
+		 <property name="typeAliasesPackage" value="com.ssm.model"/>
+	</bean> 
+	
+	<!-- mybatis配置扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 扫描me.gacl.dao这个包以及它的子包下的所有映射接口类 -->
+		<property name="basePackage" value="com.ssm.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+    
+
+</beans>
