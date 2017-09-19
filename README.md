@@ -17,10 +17,12 @@
 
 ## 1.3、MyBatis
 
-       MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。
+       MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 
+       迁移到了google code，并且改名为MyBatis 。
        MyBatis是一个基于Java的持久层框架。iBATIS提供的持久层框架包括SQL Maps和Data Access Objects（DAO）
        MyBatis 消除了几乎所有的JDBC代码和参数的手工设置以及结果集的检索。
-       MyBatis 使用简单的 XML或注解用于配置和原始映射，将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。
+       MyBatis 使用简单的 XML或注解用于配置和原始映射，
+       将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。
       
 ## maven构建项目
 pom.xml
@@ -211,22 +213,16 @@ pom.xml
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
   
-  ### 建立JDBC属性文件
-  
-db.properties文件
+### 建立JDBC属性文件  
 
-db.master.url=jdbc:mysql://127.0.0.1:3306/shiro?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
+db.master.url=jdbc:mysql://127.0.0.1:3306/ssm?useUnicode=true
+
 db.master.user=root
+
 db.master.password=root
-db.master.initialSize=5
-db.master.maxActive=100
-db.master.minIdle=10
-db.master.maxWait=60000
-db.master.validationQuery=SELECT 'x'
-db.master.timeBetweenEvictionRunsMillis=60000
-db.master.minEvictableIdleTimeMillis=300000
-db.master.removeAbandonedTimeout=1800
+
 
  ###  spring-datasource.xml
  
